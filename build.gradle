@@ -1,0 +1,33 @@
+import com.sun.jdi.Value
+
+plugins {
+    id 'java'
+}
+
+group = 'org.fery'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'com.google.guava:guava:29.0-jre'
+    testImplementation 'junit:junit:4.13'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task greetingTask() {
+    doLast {
+        String name = project.hasProperty('nama') ? project.property('nama') : 'Gradle User'
+        //On hasProperty & Property, custom type with 'nama'. if use 'name', the results its name file of documen.
+        println ("Hello, $name! Welcome to Gradle World!")
+    }
+}
+//Type on the Terminal (use Local or Git Bash), "./gradlew greeringTask -Pnama=Fery'.
+// Output "Hello, Fery! Welcome to Gradle World!"
